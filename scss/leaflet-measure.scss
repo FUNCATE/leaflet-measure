@@ -165,9 +165,9 @@ $button-icon-spacing: 4px;
   a.zoomto {
     @include button(focus);
   }
-  a.coordinates {
-    @include button(list);
-  }
+  // a.coordinates {
+  //   @include button(list);
+  // }
   a.deletemarkup {
     @include button(trash);
   }
