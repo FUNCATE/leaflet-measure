@@ -1423,7 +1423,9 @@
         return (
           !!length &&
           (type == 'number' || (type != 'symbol' && reIsUint.test(value))) &&
-          value > -1 && value % 1 == 0 && value < length
+          value > -1 &&
+          value % 1 == 0 &&
+          value < length
         );
       }
 
@@ -3769,6 +3771,16 @@
       L.control.measure = function(options) {
         measureControlReference = new L.Control.Measure(options);
         return measureControlReference;
+      };
+      L.control.measure.copyToClipboard = function(id) {
+        var copyText = document.getElementById(id);
+        if (copyText) {
+          copyText.type = 'text';
+          copyText.style = 'display: none; width: 1px;';
+          copyText.focus();
+          navigator.clipboard.writeText(copyText.innerHTML);
+          console.log('Coord Copied to clipboard: ' + copyText.innerHTML);
+        }
       };
 
       /***/
@@ -6575,7 +6587,7 @@
       module.exports =
         '<script>\n\n</script>\n<div class="group">\n  <p class="lastpoint heading">' +
         'Último ponto' +
-        ':</p>\n  <p>Coordenadas Geográficas (Grau Minuto Segundo): <br> <b>{{ model.lastCoord.dms.y }} <span class="coorddivider">/</span> {{ model.lastCoord.dms.x }} <span class="material-icons copy-coord" title="Copiar coordenadas para área de transferência" onclick="L.control.measure.copyToClipboard(\'geogms-coord\')">\n    content_copy\n    </span> <span id="geogms-coord" style="display: none;">{{ model.lastCoord.dms.x }},{{ model.lastCoord.dms.y }}</span></b></p>\n  <p>Coordenadas Geográficas (Grau Decimal): <br> <b>{{ numberFormat(model.lastCoord.dd.y, 6) }} <span class="coorddivider">/</span> {{ numberFormat(model.lastCoord.dd.x, 6) }} <span class="material-icons copy-coord" title="Copiar coordenadas para área de transferência" onclick="L.control.measure.copyToClipboard(\'geodec-coord\')">\n    content_copy\n    </span> <span id="geodec-coord" style="display: none;">{{ numberFormat(model.lastCoord.dd.x, 6) }},{{ numberFormat(model.lastCoord.dd.y, 6) }}</span></b></p>\n  <p>Coordenadas UTM Zona 23S - SIRGAS2000 (metros): <br> <b>{{ model.lastCoord.utm.y.toFixed(4) }} <span class=coorddivider>/</span> {{ model.lastCoord.utm.x.toFixed(4) }} <span class="material-icons copy-coord" title="Copiar coordenadas para área de transferência" onclick="L.control.measure.copyToClipboard(\'utm-coord\')">\n    content_copy\n    </span> <span id="utm-coord" style="display: none;">{{ model.lastCoord.utm.x.toFixed(4) }},{{ model.lastCoord.utm.y.toFixed(4) }}</span> </b></p>\n</div>\n<% if (model.pointCount > 1) { %>\n<div class="group">\n  <p class="heading">' +
+        ':</p>\n  <p>Coordenadas Geográficas (Grau Minuto Segundo): <br> <b>{{ model.lastCoord.dms.y }} <span class="coorddivider">/</span> {{ model.lastCoord.dms.x }} <span class="material-symbols-outlined copy-coord" title="Copiar coordenadas para área de transferência" onclick="L.control.measure.copyToClipboard(\'geogms-coord\')">\n    content_copy\n    </span> <span id="geogms-coord" style="display: none;">{{ model.lastCoord.dms.x }},{{ model.lastCoord.dms.y }}</span></b></p>\n  <p>Coordenadas Geográficas (Grau Decimal): <br> <b>{{ numberFormat(model.lastCoord.dd.y, 6) }} <span class="coorddivider">/</span> {{ numberFormat(model.lastCoord.dd.x, 6) }} <span class="material-symbols-outlined copy-coord" title="Copiar coordenadas para área de transferência" onclick="L.control.measure.copyToClipboard(\'geodec-coord\')">\n    content_copy\n    </span> <span id="geodec-coord" style="display: none;">{{ numberFormat(model.lastCoord.dd.x, 6) }},{{ numberFormat(model.lastCoord.dd.y, 6) }}</span></b></p>\n  <p>Coordenadas UTM Zona 23S - SIRGAS2000 (metros): <br> <b>{{ model.lastCoord.utm.y.toFixed(4) }} <span class=coorddivider>/</span> {{ model.lastCoord.utm.x.toFixed(4) }} <span class="material-symbols-outlined copy-coord" title="Copiar coordenadas para área de transferência" onclick="L.control.measure.copyToClipboard(\'utm-coord\')">\n    content_copy\n    </span> <span id="utm-coord" style="display: none;">{{ model.lastCoord.utm.x.toFixed(4) }},{{ model.lastCoord.utm.y.toFixed(4) }}</span> </b></p>\n</div>\n<% if (model.pointCount > 1) { %>\n<div class="group">\n  <p class="heading">' +
         'Distância' +
         ':</p> <br> <b>{{ model.lengthDisplay }}</b>\n</div>\n<% } %>\n<% if (model.pointCount > 2) { %>\n<div class="group">\n  <p class="heading">' +
         'Área' +

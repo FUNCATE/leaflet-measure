@@ -1,6 +1,6 @@
 {
   "name": "@geosanja/leaflet-measure-geosanja",
-  "version": "4.0.2",
+ "version": "4.0.4",
   "description": "Coordinate, linear, and area measure tool for Leaflet maps",
   "main": "dist/leaflet-measure.js",
   "repository": {
