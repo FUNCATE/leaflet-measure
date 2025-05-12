@@ -1,11 +1,11 @@
 {
-  "name": "@funcate/leaflet-measure-sigweb",
-  "version": "3.1.27",
+  "name": "@funcate/leaflet-measure-geosanja",
+  "version": "4.0.0",
   "description": "Coordinate, linear, and area measure tool for Leaflet maps",
   "main": "dist/leaflet-measure.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ljagis/leaflet-measure.git"
+    "url": "git://github.com/FUNCATE/leaflet-measure.git"
   },
   "keywords": [
     "leaflet",
@@ -60,7 +60,7 @@
     "husky": "^0.14.3",
     "i18n-webpack-plugin": "^1.0.0",
     "lint-staged": "^6.1.0",
-    "node-sass": "^4.7.2",
+    "node-sass": "^7.0.3",
     "prettier": "^1.10.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
